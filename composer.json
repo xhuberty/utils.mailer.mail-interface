@@ -1,4 +1,4 @@
-{
+﻿{
     "name": "mouf/utils.mailer.mail-interface",
     "description": "This package contains interfaces and classes describing mails. It also contains the MailerService interface that should be implemented by any service that can send mails. You should use a package implementing this interface (like the SmtpMailer package.",
     "keywords": ["mouf", "mailer", "mail", "interface"],
@@ -7,7 +7,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "David N�grier",
+            "name": "David Négrier",
             "email": "d.negrier@thecodingmachine.com",
             "homepage": "http://mouf-php.com"
         }
