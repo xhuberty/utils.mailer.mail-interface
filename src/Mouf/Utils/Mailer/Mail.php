@@ -20,7 +20,7 @@ class Mail implements MailInterface {
 	protected $bccRecipients = array();
 	protected $attachements = array();
 	protected $encoding = "utf-8";
-	protected $autocreateMissingText = false;
+	protected $autocreateMissingText = true;
 	protected $css;
 	
 	/**
