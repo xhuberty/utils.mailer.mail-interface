@@ -13,15 +13,14 @@ Mouf provides 4 implementations of mail services. You can provide your own if yo
 
 By default, Mouf provides these 4 implementations:
 
-- <b>SmtpMailService</b>: a mail service that uses a SMTP server to send mails (this is a wrapper using the Zend_Mail library). It 
-  is available in the package <em>utils/mailer/smtp-mail-service</em>.
+- [**SmtpMailService**](http://mouf-php.com/packages/mouf/utils.mailer.smtp-mail-service/README.md): a mail service that uses a SMTP server to send mails (this is a wrapper using the Zend_Mail library).
 - <b>SimpleMailService</b>: a mail service that uses the PHP <code>mail</code> function to send mails. It 
-  is available in the package <em>utils/mailer/simple-mail-service</em>.
-- <b>DBMailService</b>: a mail service that does not send any mails. Instead, it writes the mail in a MySQL database. It 
+  is available in the package <em>utils/mailer/simple-mail-service</em>. (TODO: needs migration from Mouf1)
+- [<b>DBMailService</b>](http://mouf-php.com/packages/mouf/utils.mailer.db-mail-service/README.md): a mail service that does not send any mails. Instead, it writes the mail in a MySQL database. It 
   can forward the mail later to another mail service that will actually send the mail. This mail server is available in the 
   package <em>utils/mailer/db-mail-service</em>.
 - <b>NullMailService</b>: a mail service that does not send any mails. This is useful to disable the sending of mails when developing an application. It 
-  is available in the package <em>utils/mailer/null-mail-service</em>.
+  is available in the package <em>utils/mailer/null-mail-service</em>. (TODO: needs migration from Mouf1)
 
 Each mail service must extend the <code>MailServiceInterface</code> interface that is part of the
 package utils/mailer/mail-interface.
@@ -71,3 +70,29 @@ The <code>MailInterface</code> interface supports:
 - File attachments (<code>addAttachment</code> method)
 
 Mail addresses are passed as a <code>MailAddress</code> object, that contains 2 strings: the mail address and the alias.
+
+
+Automatic text body generation
+------------------------------
+When sending mails, it is a good practice to send 2 *bodies*: one in **plain text** and one in **HTML**.
+Forget the **plain text** and your mail could be flagged as spam.
+However, most of the time, your users will look at the mail in HTML. Mail clients that can only read plain text
+are really rare those days. 
+
+The `Mail` class can help you here. Indeed, it will automatically generate the plain text version of your mail
+from the HTML, by stripping all tags.
+
+```php
+$mail = new Mail();
+$mail->setBodyHtml("This is my &lt;b&gt;mail&lt;/b&gt;!");
+// No need to call $mail->setBodyText()
+```
+
+If you want to explicitly disable the plain text generation you can call this method:
+
+```php
+$mail = new Mail();
+$mail->setBodyHtml("This is my &lt;b&gt;mail&lt;/b&gt;!");
+// Disable plaing text generation from HTML. The mail will NOT contain the plain text part.
+$mail->autoCreateBodyText(false);
+```
