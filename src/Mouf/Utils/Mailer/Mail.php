@@ -1,6 +1,8 @@
 <?php
 namespace Mouf\Utils\Mailer;
 
+use Pelago\Emogrifier;
+
 /**
  * This class represents a mail to be sent using a Mailer class extending the MailerInterface.
  * + it has special features to add a text mail for any HTML mail that has not been provided the text mail.
@@ -63,10 +65,7 @@ class Mail implements MailInterface {
 	 */
 	public function getBodyHtml() {
 		if ($this->css) {
-			// For testing purpose
-			//file_put_contents("/tmp/aaa.txt", $this->getBodyHtmlBeforeEmogrify());
 			$emogrifier = new Emogrifier($this->getBodyHtmlBeforeEmogrify(), $this->css);
-			//echo($this->getBodyHtmlBeforeEmogrify());
 			$finalHtml = $emogrifier->emogrify();
 		} else {
 			$finalHtml = $this->getBodyHtmlBeforeEmogrify();
@@ -201,7 +200,7 @@ class Mail implements MailInterface {
 	/**
 	 * Adds a recipient.
 	 *
-	 * @param MailAddressInterface $ccRecipient
+	 * @param MailAddressInterface $bccRecipient
 	 */
 	public function addBccRecipient(MailAddressInterface $bccRecipient) {
 		$this->bccRecipients[] = $bccRecipient;
@@ -283,6 +282,9 @@ class Mail implements MailInterface {
                 $s = str_replace('</' . $k[$i],'[{(/' . $k[$i],$s);
             }
         }
+
+		$pos = array();
+		$len = array();
        
         //begin removal
         /**///remove comment blocks
@@ -347,10 +349,9 @@ class Mail implements MailInterface {
      *
      * CSS is inlined using the Emogrifier library.
      *
-     * @param string $css The CSS to apply.
+     * @param string $file The CSS file to apply.
      */
     public function addCssFile($file) {
     	$this->css .= file_get_contents($file);
     }
 }
-?>

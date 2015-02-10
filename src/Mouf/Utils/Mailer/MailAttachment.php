@@ -4,7 +4,6 @@ namespace Mouf\Utils\Mailer;
 /**
  * This class represents an attachement in a mail.
  *
- * @Component
  */
 class MailAttachment implements MailAttachmentInterface {
 
