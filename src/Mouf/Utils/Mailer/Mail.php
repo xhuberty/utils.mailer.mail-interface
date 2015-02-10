@@ -1,6 +1,8 @@
 <?php
 namespace Mouf\Utils\Mailer;
 
+use Pelago\Emogrifier;
+
 /**
  * This class represents a mail to be sent using a Mailer class extending the MailerInterface.
  * + it has special features to add a text mail for any HTML mail that has not been provided the text mail.
@@ -63,10 +65,7 @@ class Mail implements MailInterface {
 	 */
 	public function getBodyHtml() {
 		if ($this->css) {
-			// For testing purpose
-			//file_put_contents("/tmp/aaa.txt", $this->getBodyHtmlBeforeEmogrify());
 			$emogrifier = new Emogrifier($this->getBodyHtmlBeforeEmogrify(), $this->css);
-			//echo($this->getBodyHtmlBeforeEmogrify());
 			$finalHtml = $emogrifier->emogrify();
 		} else {
 			$finalHtml = $this->getBodyHtmlBeforeEmogrify();

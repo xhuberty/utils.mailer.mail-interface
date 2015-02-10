@@ -7,7 +7,6 @@ namespace Mouf\Utils\Mailer;
  *  - an email address
  *  - the name that should be displayed
  *
- * @Component
  */
 class MailAddress implements MailAddressInterface {
 	
@@ -25,8 +24,6 @@ class MailAddress implements MailAddressInterface {
 	/**
 	 * Sets the mail address.
 	 *
-	 * @Property
-	 * @Compulsory 
 	 * @param string $mail
 	 */
 	public function setMail($mail) {
@@ -36,13 +33,16 @@ class MailAddress implements MailAddressInterface {
 	/**
 	 * Sets the name of the mail owner.
 	 *
-	 * @Property
 	 * @param string $displayAs
 	 */
 	public function setDisplayAs($displayAs) {
 		$this->displayAs = $displayAs;
 	}
-	
+
+	/**
+	 * @param string $mail The mail address.
+	 * @param string $displayAs The name of the mail owner.
+	 */
 	public function __construct($mail = null, $displayAs = null) {
 		$this->setMail($mail);
 		$this->setDisplayAs($displayAs);

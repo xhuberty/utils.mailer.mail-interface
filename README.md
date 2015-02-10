@@ -1,3 +1,8 @@
+[![Latest Stable Version](https://poser.pugx.org/mouf/utils.mailer.mail-interface/v/stable.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
+[![Latest Unstable Version](https://poser.pugx.org/mouf/utils.mailer.mail-interface/v/unstable.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
+[![License](https://poser.pugx.org/mouf/utils.mailer.mail-interface/license.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/?branch=2.0)
+
 Mouf Mail system
 ================
 
@@ -11,16 +16,14 @@ In Mouf, <em>emails</em> are sent using <em>MailServices</em>.<br/>
 Mouf provides 4 implementations of mail services. You can provide your own if you want.
 
 
-By default, Mouf provides these 4 implementations:
+By default, Mouf provides these 3 implementations:
 
+- [**SwiftMailService**](http://mouf-php.com/packages/mouf/utils.mailer.swift-mail-service/README.md): a mail service that uses a SMTP server to send mails (this is a wrapper using the Swift mail library).
 - [**SmtpMailService**](http://mouf-php.com/packages/mouf/utils.mailer.smtp-mail-service/README.md): a mail service that uses a SMTP server to send mails (this is a wrapper using the Zend_Mail library).
-- <b>SimpleMailService</b>: a mail service that uses the PHP <code>mail</code> function to send mails. It 
-  is available in the package <em>utils/mailer/simple-mail-service</em>. (TODO: needs migration from Mouf1)
-- [<b>DBMailService</b>](http://mouf-php.com/packages/mouf/utils.mailer.db-mail-service/README.md): a mail service that does not send any mails. Instead, it writes the mail in a MySQL database. It 
+- [**DBMailService**](http://mouf-php.com/packages/mouf/utils.mailer.db-mail-service/README.md): a mail service that does not send any mails. Instead, it writes the mail in a MySQL database. It 
   can forward the mail later to another mail service that will actually send the mail. This mail server is available in the 
   package <em>utils/mailer/db-mail-service</em>.
-- <b>NullMailService</b>: a mail service that does not send any mails. This is useful to disable the sending of mails when developing an application. It 
-  is available in the package <em>utils/mailer/null-mail-service</em>. (TODO: needs migration from Mouf1)
+
 
 Each mail service must extend the <code>MailServiceInterface</code> interface that is part of the
 package utils/mailer/mail-interface.
