@@ -200,7 +200,7 @@ class Mail implements MailInterface {
 	/**
 	 * Adds a recipient.
 	 *
-	 * @param MailAddressInterface $ccRecipient
+	 * @param MailAddressInterface $bccRecipient
 	 */
 	public function addBccRecipient(MailAddressInterface $bccRecipient) {
 		$this->bccRecipients[] = $bccRecipient;
@@ -282,6 +282,9 @@ class Mail implements MailInterface {
                 $s = str_replace('</' . $k[$i],'[{(/' . $k[$i],$s);
             }
         }
+
+		$pos = array();
+		$len = array();
        
         //begin removal
         /**///remove comment blocks
@@ -346,10 +349,9 @@ class Mail implements MailInterface {
      *
      * CSS is inlined using the Emogrifier library.
      *
-     * @param string $css The CSS to apply.
+     * @param string $file The CSS file to apply.
      */
     public function addCssFile($file) {
     	$this->css .= file_get_contents($file);
     }
 }
-?>
