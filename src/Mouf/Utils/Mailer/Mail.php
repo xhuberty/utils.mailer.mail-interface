@@ -137,7 +137,7 @@ class Mail implements MailInterface {
 	 * @Property
 	 * @param array<MailAddressInterface> $toRecipients
 	 */
-	public function setToRecipients($toRecipients) {
+	public function setToRecipients(array $toRecipients) {
 		$this->toRecipients = $toRecipients;
 	}
 	
@@ -165,7 +165,7 @@ class Mail implements MailInterface {
 	 * @Property
 	 * @param array<MailAddressInterface> $ccRecipients
 	 */
-	public function setCcRecipients($ccRecipients) {
+	public function setCcRecipients(array $ccRecipients) {
 		$this->ccRecipients = $ccRecipients;
 	}
 	
@@ -193,7 +193,7 @@ class Mail implements MailInterface {
 	 * @Property
 	 * @param array<MailAddressInterface> $bccRecipients
 	 */
-	public function setBccRecipients($bccRecipients) {
+	public function setBccRecipients(array $bccRecipients) {
 		$this->bccRecipients = $bccRecipients;
 	}
 	
@@ -221,7 +221,7 @@ class Mail implements MailInterface {
 	 * @Property
 	 * @param array<MailAttachmentInterface> $attachements
 	 */
-	public function setAttachements($attachements) {
+	public function setAttachements(array $attachements) {
 		$this->attachements = $attachements;
 	}
 	
