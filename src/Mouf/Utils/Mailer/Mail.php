@@ -126,7 +126,7 @@ class Mail implements MailInterface {
 	/**
 	 * Returns an array containing the recipients.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	public function getToRecipients() {
 		return $this->toRecipients;
@@ -136,7 +136,7 @@ class Mail implements MailInterface {
 	 * An array containing the recipients.
 	 *
 	 * @Property
-	 * @param array<MailAddressInterface> $toRecipients
+	 * @param MailAddressInterface[] $toRecipients
 	 */
 	public function setToRecipients(array $toRecipients) {
 		$this->toRecipients = $toRecipients;
@@ -154,7 +154,7 @@ class Mail implements MailInterface {
 	/**
 	 * Returns an array containing the recipients in Cc.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	public function getCcRecipients() {
 		return $this->ccRecipients;
@@ -164,7 +164,7 @@ class Mail implements MailInterface {
 	 * An array containing the recipients.
 	 *
 	 * @Property
-	 * @param array<MailAddressInterface> $ccRecipients
+	 * @param MailAddressInterface[] $ccRecipients
 	 */
 	public function setCcRecipients(array $ccRecipients) {
 		$this->ccRecipients = $ccRecipients;
@@ -182,7 +182,7 @@ class Mail implements MailInterface {
 	/**
 	 * Returns an array containing the recipients in Bcc.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	public function getBccRecipients() {
 		return $this->bccRecipients;
@@ -192,7 +192,7 @@ class Mail implements MailInterface {
 	 * An array containing the recipients.
 	 *
 	 * @Property
-	 * @param array<MailAddressInterface> $bccRecipients
+	 * @param MailAddressInterface[] $bccRecipients
 	 */
 	public function setBccRecipients(array $bccRecipients) {
 		$this->bccRecipients = $bccRecipients;

@@ -38,21 +38,21 @@ interface MailInterface {
 	/**
 	 * Returns an array containing the recipients.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	function getToRecipients();
 	
 	/**
 	 * Returns an array containing the recipients in Cc.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	function getCcRecipients();
 	
 	/**
 	 * Returns an array containing the recipients in Bcc.
 	 *
-	 * @return array<MailAddressInterface>
+	 * @return MailAddressInterface[]
 	 */
 	function getBccRecipients();
 	
@@ -69,27 +69,4 @@ interface MailInterface {
 	 * @return string
 	 */
 	function getEncoding();
-	// TODO
-	// TODO
-	// TODO
-	// TODO
-	// TODO
-	// TODO
-	// TODO
-	// TODO
-	// Plutôt qu'enrober, il faudrait utiliser la classe telle quelle!
-	// Est-ce qu'on peut décrire des composants par déclaration dans components.xml?
-	// Ca serait de la balle!!!!!!
-	// Pourquoi pas une Factory d'ailleurs?
-	// @Factory(Zend_Mail_Transport_Smtp)
-	// puis des @Properties
-	// puis 
-	// function buildInstance()
-	//
-	// Note: attention: les boucles sont interdites avec les factory!!!!
-	// Ou alors, on fait un truc du genre:
-	// function getEmptyInstance()
-	// function canParameter($parameter) // retourne true si on peut setter une property après l'instanciation vide
-	// function getFullInstance()
 }
-?>
