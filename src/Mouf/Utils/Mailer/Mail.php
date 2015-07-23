@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Utils\Mailer;
 
+use Html2Text\Html2Text;
 use Pelago\Emogrifier;
 
 /**
@@ -34,7 +35,7 @@ class Mail implements MailInterface {
 		if ($this->bodyText != null) {
 			return $this->bodyText;
 		} elseif ($this->autocreateMissingText == true) {
-			return $this->removeHtml($this->getBodyHtml());
+			return Html2Text::convert($this->getBodyHtml());
 		}
 	}
 	
@@ -263,74 +264,6 @@ class Mail implements MailInterface {
 		$this->autocreateMissingText = $autoCreate;
 	}
 	
-	/**
-	 * Removes the HTML tags from the text.
-	 * 
-	 * @param string $s
-	 * @param string $keep The list of tags to keep
-	 * @param string $expand The list of tags to remove completely, along their content
-	 */
-	private function removeHtml($s , $keep = '' , $expand = 'script|style|noframes|select|option'){
-        /**///prep the string
-        $s = ' ' . $s;
-       
-        /**///initialize keep tag logic
-        if(strlen($keep) > 0){
-            $k = explode('|',$keep);
-            for($i=0;$i<count($k);$i++){
-                $s = str_replace('<' . $k[$i],'[{(' . $k[$i],$s);
-                $s = str_replace('</' . $k[$i],'[{(/' . $k[$i],$s);
-            }
-        }
-
-		$pos = array();
-		$len = array();
-       
-        //begin removal
-        /**///remove comment blocks
-        while(stripos($s,'<!--') > 0){
-            $pos[1] = stripos($s,'<!--');
-            $pos[2] = stripos($s,'-->', $pos[1]);
-            $len[1] = $pos[2] - $pos[1] + 3;
-            $x = substr($s,$pos[1],$len[1]);
-            $s = str_replace($x,'',$s);
-        }
-       
-        /**///remove tags with content between them
-        if(strlen($expand) > 0){
-            $e = explode('|',$expand);
-            for($i=0;$i<count($e);$i++){
-                while(stripos($s,'<' . $e[$i]) > 0){
-                    $len[1] = strlen('<' . $e[$i]);
-                    $pos[1] = stripos($s,'<' . $e[$i]);
-                    $pos[2] = stripos($s,$e[$i] . '>', $pos[1] + $len[1]);
-                    $len[2] = $pos[2] - $pos[1] + $len[1];
-                    $x = substr($s,$pos[1],$len[2]);
-                    $s = str_replace($x,'',$s);
-                }
-            }
-        }
-       
-        /**///remove remaining tags
-        while(stripos($s,'<') > 0){
-            $pos[1] = stripos($s,'<');
-            $pos[2] = stripos($s,'>', $pos[1]);
-            $len[1] = $pos[2] - $pos[1] + 1;
-            $x = substr($s,$pos[1],$len[1]);
-            $s = str_replace($x,'',$s);
-        }
-       
-        /**///finalize keep tag
-        if (isset($k)) {
-	        for($i=0;$i<count($k);$i++){
-	            $s = str_replace('[{(' . $k[$i],'<' . $k[$i],$s);
-	            $s = str_replace('[{(/' . $k[$i],'</' . $k[$i],$s);
-	        }
-        }
-       
-        return trim($s);
-    }
-    
     /**
      * Registers some CSS to be applied to the HTML.
      * When sending the mail, the CSS will be DIRECTLY applied to the HTML, resulting in some HTML with inline CSS.
