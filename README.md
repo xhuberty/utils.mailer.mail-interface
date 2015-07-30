@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/mouf/utils.mailer.mail-interface/v/stable.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
 [![Latest Unstable Version](https://poser.pugx.org/mouf/utils.mailer.mail-interface/v/unstable.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
 [![License](https://poser.pugx.org/mouf/utils.mailer.mail-interface/license.svg)](https://packagist.org/packages/mouf/utils.mailer.mail-interface)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/?branch=2.0)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/badges/quality-score.png?b=2.0)](https://scrutinizer-ci.com/g/thecodingmachine/utils.mailer.mail-interface/?branch=2.1)
 
 Mouf Mail system
 ================
